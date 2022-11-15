@@ -1,56 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-_Youtube() async {
-  var url =
-      Uri.parse("https://www.youtube.com/channel/UCZHCz1m7pBwzDvTe9sC08Yw");
-  if (await canLaunchUrl(url)) {
-    await launchUrl(url);
-  } else {
-    throw 'Could not launch $url';
-  }
-}
-
-_Portofolio() async {
-  var url = Uri.parse('https://portofolio-3c1ab.web.app/');
-  if (await canLaunchUrl(url)) {
-    await launchUrl(url);
-  } else {
-    throw 'Akses Ditolak $url';
-  }
-}
 
 _Gmail() async {
   var url = Uri.parse(
       'mailto:hilmankeren0936@gmail.com?subject=Mail from our Website');
-  if (await canLaunchUrl(url)) {
-    await launchUrl(url);
-  } else {
-    throw 'Akses Ditolak $url';
-  }
-}
-
-_Tiktok() async {
-  var url = Uri.parse('https://www.tiktok.com/@ajiramdani_ari');
-  if (await canLaunchUrl(url)) {
-    await launchUrl(url);
-  } else {
-    throw 'Akses Ditolak $url';
-  }
-}
-
-_Instagram() async {
-  var url = Uri.parse('https://www.instagram.com/ajiramdani_04/');
-  if (await canLaunchUrl(url)) {
-    await launchUrl(url);
-  } else {
-    throw 'Akses Ditolak $url';
-  }
-}
-
-_Whatsapp() async {
-  var url = Uri.parse(
-      'https://wa.me/+6289508742700?text=I%27m%20interested%20in%20your%20car%20for%20sale');
   if (await canLaunchUrl(url)) {
     await launchUrl(url);
   } else {
@@ -102,41 +56,42 @@ class _MyHomePageState extends State<MyHomePage> {
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
-                  fontSize: 20),
+                  fontSize: 30),
             ),
             Text(
               'I Am Aji Ramdani',
               style: TextStyle(
                   color: Color.fromARGB(255, 7, 167, 230),
                   fontWeight: FontWeight.bold,
-                  fontSize: 30),
+                  fontSize: 40),
             ),
             Text(
               'Graphic Designer || UI UX DESIGNER || Web Develover',
               style: TextStyle(color: Colors.white),
             ),
+
+            // container button 1
             Container(
                 margin: EdgeInsets.all(10),
                 width: 200,
                 height: 45,
-                child: TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.blue),
-                  onPressed: _Portofolio,
-                  child: Text(
-                    'BUKA PORTOFOLIO',
-                    style: TextStyle(color: Colors.white),
-                  ),
+                child: Link(
+                  target: LinkTarget.blank,
+                  uri: Uri.parse('https://portofolio-3c1ab.web.app/'),
+                  builder: (context, followLink) => ElevatedButton(
+                      onPressed: followLink, child: Text("PORTOFOLIO")),
                 )),
             Image.asset('assets/image/logo.png'),
             Text(
               'Media Sosial Mimin :)',
               style: TextStyle(
-                  color: Color.fromARGB(255, 11, 72, 177),
+                  color: Color.fromARGB(255, 255, 255, 255),
                   fontWeight: FontWeight.bold,
                   fontSize: 20),
             ),
+
             Container(
-              margin: EdgeInsets.all(10),
+              margin: EdgeInsets.all(6),
               width: 350,
               child: FlatButton(
                 textColor: Colors.white,
@@ -158,98 +113,146 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+
             Container(
-              margin: EdgeInsets.all(1.0),
+                margin: EdgeInsets.all(6),
+                width: 350,
+                child: Link(
+                  target: LinkTarget.blank,
+                  uri: Uri.parse('https://www.instagram.com/ajiramdani_04/'),
+                  builder: (context, followLink) => FlatButton(
+                      textColor: Colors.white,
+                      height: 60.0,
+                      color: Color.fromARGB(255, 230, 14, 183),
+                      onPressed: followLink,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.asset(
+                              'assets/image/instagram.png',
+                              height: 20,
+                            ),
+                          ),
+                          Text(
+                            'Instagram',
+                          )
+                        ],
+                      )),
+                )),
+
+            Container(
+              margin: EdgeInsets.all(6),
               width: 350,
-              child: FlatButton(
-                textColor: Colors.white,
-                height: 60.0,
-                color: Color.fromARGB(255, 212, 0, 159),
-                onPressed: _Instagram,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(
-                        'assets/image/instagram.png',
-                        height: 20,
-                      ),
-                    ),
-                    Text('Instagram')
-                  ],
+              child: Link(
+                target: LinkTarget.blank,
+                uri: Uri.parse(
+                    'https://wa.me/+6289508742700?text=Assalamualaikum%20Kak%20Ari'),
+                builder: (context, FollowLink) => FlatButton(
+                  textColor: Colors.white,
+                  height: 60.0,
+                  color: Color.fromARGB(255, 17, 217, 24),
+                  onPressed: FollowLink,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            'assets/image/whatsapp.png',
+                            height: 20,
+                          ),
+                        ),
+                        Text('Whatsapp')
+                      ]),
                 ),
               ),
             ),
-            Container(
-              margin: EdgeInsets.all(10),
-              width: 350,
-              child: FlatButton(
-                textColor: Colors.white,
-                height: 60.0,
-                color: Color.fromARGB(255, 0, 212, 32),
-                onPressed: _Whatsapp,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(
-                        'assets/image/whatsapp.png',
-                        height: 20,
-                      ),
-                    ),
-                    Text('Whatsapp')
-                  ],
-                ),
-              ),
-            ),
+
             Container(
               margin: EdgeInsets.all(1),
               width: 350,
-              child: FlatButton(
-                textColor: Colors.white,
-                height: 60.0,
-                color: Color.fromARGB(255, 212, 0, 0),
-                onPressed: _Youtube,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(
-                        'assets/image/youtube.png',
-                        height: 20,
-                      ),
-                    ),
-                    Text('Youtube')
-                  ],
-                ),
+              child: Link(
+                target: LinkTarget.blank,
+                uri: Uri.parse(
+                    'https://www.youtube.com/channel/UCZHCz1m7pBwzDvTe9sC08Yw'),
+                builder: (context, FollowLink) => FlatButton(
+                    onPressed: FollowLink,
+                    textColor: Colors.white,
+                    color: Color.fromARGB(255, 255, 17, 0),
+                    height: 60.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            'assets/image/youtube.png',
+                            height: 20,
+                          ),
+                        ),
+                        Text('Youtube')
+                      ],
+                    )),
               ),
             ),
+
             Container(
-              margin: EdgeInsets.all(10),
+              margin: EdgeInsets.all(6),
               width: 350,
-              child: FlatButton(
-                textColor: Colors.white,
-                height: 60.0,
-                color: Color.fromARGB(255, 50, 47, 50),
-                onPressed: _Tiktok,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(
-                        'assets/image/tik-tok.png',
-                        height: 20,
-                      ),
-                    ),
-                    Text('Tiktok')
-                  ],
-                ),
+              child: Link(
+                target: LinkTarget.blank,
+                uri: Uri.parse('https://www.tiktok.com/@ajiramdani_ari'),
+                builder: (context, FollowLink) => FlatButton(
+                    onPressed: FollowLink,
+                    textColor: Colors.white,
+                    height: 60.0,
+                    color: Color.fromARGB(255, 80, 78, 78),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            'assets/image/tik-tok.png',
+                            height: 20,
+                          ),
+                        ),
+                        Text('Tiktok')
+                      ],
+                    )),
               ),
             ),
+
+            Container(
+              margin: EdgeInsets.all(6),
+              width: 350,
+              child: Link(
+                target: LinkTarget.blank,
+                uri: Uri.parse(
+                    'https://www.linkedin.com/in/aji-ramdani-ari-016bb1250/'),
+                builder: (context, FollowLink) => FlatButton(
+                    onPressed: FollowLink,
+                    textColor: Colors.white,
+                    height: 60.0,
+                    color: Color.fromARGB(255, 14, 56, 114),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            'assets/image/linkedin.png',
+                            height: 20,
+                          ),
+                        ),
+                        Text('Linkedln')
+                      ],
+                    )),
+              ),
+            ),
+
             Container(
               child: Text(
                 'Terima Kasih !!',
@@ -259,6 +262,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+
             Container(
               margin: EdgeInsets.all(10),
               child: Row(

@@ -62,6 +62,8 @@ flutter:
     - assets/image/whatsapp.png
     - assets/image/youtube.png
     - assets/image/tik-tok.png
+    - assets/image/linkedin.png
+    - assets/image/twiter.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
